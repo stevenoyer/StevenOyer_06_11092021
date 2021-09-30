@@ -28,8 +28,12 @@ Le but étant de créer le backend du frontend donné par OpenClassrooms [accéd
 - nodemon
 
 ## Commandes
-- npm install
-- node server.js || nodemon server.js
+```cmd
+npm install
+```
+```cmd
+node server.js || nodemon server.js
+```
 
 ## Compétences évaluées
 - Implémenter un modèle logique de données conformément à la réglementation
