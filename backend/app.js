@@ -17,6 +17,7 @@ mongoose.connect('mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_P
 
 // Routes
 const auth = require('./routes/auth')
+const sauces = require('./routes/sauces')
 
 
 // Middleware Header (autorise les échanges)
@@ -35,7 +36,7 @@ app.disable('x-powered-by') // Enlève "express" pour éviter les attaques cibl�
 app.use(sanitize({replaceWith: '_'}))
 app.use(xss())
 app.use('/images', express.static(path.join(__dirname, 'images')))
-//app.use('api/sauces', sauces)
-app.use('api/auth', auth)
+app.use('/api/sauces', sauces)
+app.use('/api/auth', auth)
 
 module.exports = app
