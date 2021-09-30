@@ -41,7 +41,7 @@ exports.modifySauce = (req, res, next) => {
         ...JSON.parse(req.body.sauces),
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : { ...req.body }
-    ThiSaucesng.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
+    Sauces.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
         .then(() => res.status(200).json({message: 'La sauce a bien été modifiée.'}))
         .catch(error => res.status(401).json({message: error}))
 }
