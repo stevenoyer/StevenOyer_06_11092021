@@ -40,12 +40,23 @@ exports.deleteSauce = (req, res, next) => {
 
 // Modifie une sauce par rapport à son ID
 exports.modifySauce = (req, res, next) => {
-    const sauceObject = req.file ?
-    {
-        ...JSON.parse(req.body.sauces),
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : { ...req.body }
-    Sauces.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
+
+    let object = {}
+
+    if (req.file) {
+        object = {...JSON.parse(req.body.sauce), imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`}
+        Sauces.findById(req.params.id)
+            .then(sauce => {
+                const url = './images' + sauce.imageUrl.split('images')[1]
+                fs.unlink(url, error => console.log(error))
+            })
+            .catch(error => console.log(error))
+    }else {
+        object = {...req.body}
+        console.log(object)
+    }
+
+    Sauces.updateOne({ _id: req.params.id }, { ...object, _id: req.params.id })
         .then(() => res.status(200).json({message: 'La sauce a bien été modifiée.'}))
         .catch(error => res.status(400).json({message: error}))
 }
