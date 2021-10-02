@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const env = require('dotenv').config()
 
+// Inscription de l'utilisateur
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -18,6 +19,7 @@ exports.signup = (req, res, next) => {
         .catch(error => res.status(500).json({error}))
 }
 
+// Connexion de l'utilisateur et création d'un TOKEN
 exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
         .then(user => {
@@ -44,7 +46,8 @@ exports.login = (req, res, next) => {
         .catch(error => res.status(500).json({error}))
 }
 
+// Gestion des erreurs
 exports.error = (err, req, res, next) => {
     console.log('Erreur')
-    res.status(418).json({ message: 'Erreur ' + err })
+    res.status(401).json({ message: 'Erreur ' + err })
 }
