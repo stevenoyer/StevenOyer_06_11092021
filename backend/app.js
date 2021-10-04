@@ -33,10 +33,10 @@ app.use(bodyParser.json())
 
 app.use(helmet()) // Helmet permet de protéger l'application de certaines vulnérabilités bien connues
 app.disable('x-powered-by') // Enlève "express" pour éviter les attaques ciblés
-app.use(sanitize({replaceWith: '_'}))
-app.use(xss())
-app.use('/images', express.static(path.join(__dirname, 'images')))
-app.use('/api/sauces', sauces)
-app.use('/api/auth', auth)
+app.use(sanitize({replaceWith: '_'})) // Remplace tous les caractères interdits par des "_" | Empêche l'injection d'opérateur MongoDB
+app.use(xss()) // Permet de nettoyer les entrées utilisateurs
+app.use('/images', express.static(path.join(__dirname, 'images'))) // Défini le dossier image comme static afin de permettre à l'application d'accéder aux images
+app.use('/api/sauces', sauces) // Sauces
+app.use('/api/auth', auth) // Authentification
 
 module.exports = app
