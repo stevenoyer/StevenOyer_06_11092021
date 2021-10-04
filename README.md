@@ -38,6 +38,7 @@ node server.js || nodemon server.js
 ## Fichier de configuration (.env)
 ```cmd
 PORT=3000
+TOKEN_SECRET=''
 
 # -- DB INFO
 DB_USER=''
