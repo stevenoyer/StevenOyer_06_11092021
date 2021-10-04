@@ -35,6 +35,21 @@ npm install
 node server.js || nodemon server.js
 ```
 
+## Fichier de configuration (.env)
+```cmd
+PORT=3000
+
+# -- DB INFO
+DB_USER=''
+DB_PASSWORD=''
+DB_COLLECTION=''
+```
+
+## Images
+```cmd
+N'oubliez pas de créer le dossier 'images' dans le backend.
+```
+
 ## Compétences évaluées
 - Implémenter un modèle logique de données conformément à la réglementation
 - Stocker des données de manière sécurisée
