@@ -35,7 +35,7 @@ npm install
 node server.js || nodemon server.js
 ```
 
-## Fihier de configuration (.env)
+## Fichier de configuration (.env)
 ```cmd
 PORT=3000
 
