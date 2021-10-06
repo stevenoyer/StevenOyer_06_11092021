@@ -114,8 +114,7 @@ exports.likeOrDislike = (req, res, next) => {
             dislikes: dislikes,
             usersLiked: liked,
             usersDisliked: disliked
-
-        }, (err, nb) => {console.log('Erreur => ', nb)})
+        })
 
         res.status(200).json({message: 'Like modifié'})
     })
