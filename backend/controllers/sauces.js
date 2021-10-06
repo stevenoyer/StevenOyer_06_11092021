@@ -6,9 +6,13 @@ exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce)
     delete sauceObject._id
 
+    console.log(req.body.sauce)
+
     const sauce = new Sauces({
         ...sauceObject,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+        likes: 0,
+        dislikes: 0
     })
 
     sauce.save()
@@ -79,12 +83,15 @@ exports.likeOrDislike = (req, res, next) => {
         let liked = sauce.usersLiked
         let disliked = sauce.usersDisliked
 
+        console.log('user :', userID, 'sauce :', sauceID, 'like:', like, 'users likes:', liked)
+
+        console.log(liked.indexOf(userID))
         switch (like) {
             case 1:
                 if (liked.indexOf(userID) == -1){
                     liked.push(userID);
                     if (disliked.indexOf(userID) != -1){
-                        disliked.splice(disliked.indexOf(userID),1)
+                        disliked.splice(disliked.indexOf(userID), 1)
                     }
                 }
                 break
