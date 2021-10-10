@@ -34,7 +34,7 @@ Le but étant de créer le backend du frontend donné par OpenClassrooms [accéd
 npm install
 ```
 ```cmd
-node server.js || nodemon server.js
+node app.js || nodemon app.js
 ```
 
 ## Fichier de configuration (.env)
