@@ -24,7 +24,6 @@ mongoose.connect('mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_P
 const auth = require('./routes/auth')
 const sauces = require('./routes/sauces')
 
-
 // Middleware Header (autorise les échanges)
 app.use(cors())
 // Rend les données du corps de la requête exploitable
